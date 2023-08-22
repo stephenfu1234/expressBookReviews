@@ -1,5 +1,4 @@
 const express = require('express');
-const jwt = require('jsonwebtoken');
 let books = require("./booksdb.js");
 let isValid = require("./auth_users.js").isValid;
 let users = require("./auth_users.js").users;
@@ -15,14 +14,12 @@ const doesExist = (username)=>{
       return false;
     }
   }
-
   
 public_users.post("/register", (req,res) => {
   //Write your code here  
-  const username = req.body.username;
-  const password = req.body.password;
+  const username = req.query.username;
+  const password = req.query.password;
 
-console.log(password)
   if (username && password) {
     if (!doesExist(username)) { 
       users.push({"username":username,"password":password});
@@ -79,7 +76,7 @@ public_users.get('/title/:title',function (req, res) {
 //  Get book review
 public_users.get('/review/:isbn',function (req, res) {
   //Write your code here
-  const isbn = req.params.isbn
+  const isbn = req.params.isbn;
   res.send(books[isbn].reviews)
 });
 
