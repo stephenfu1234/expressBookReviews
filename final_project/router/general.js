@@ -87,12 +87,12 @@ module.exports.general = public_users;
 const connectToURL = (url)=>{
     const req = axios.get(url);
     req.then(resp => {
-        console.log(url)
+        console.log(url);
         console.log(resp.data);
     })
     .catch(err => {
-        console.log("Rejected for url "+url)
-        console.log(err.toString())
+        console.log("Rejected for url "+url);
+        console.log(err.toString());
     });
 }
 
